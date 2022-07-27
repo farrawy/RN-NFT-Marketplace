@@ -1,27 +1,46 @@
-import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
+import { View, Image } from "react-native";
 
-//! Butttons
-import { CircleButton, RectButton } from "./Button";
-
-//! Constants
 import { COLORS, SIZES, SHADOWS, assets } from "../constants";
-
-//! Info
 import { SubInfo, EthPrice, NFTTitle } from "./SubInfo";
-
-const { width, height } = Dimensions.get("window");
+import { RectButton, CircleButton } from "./Button";
 
 const NFTCard = ({ data }) => {
   const navigation = useNavigation();
+
   return (
-    <View style={styles.container}>
-      <View style={styles.card}>
-        <Image source={data.image} style={styles.image} />
+    <View
+      style={{
+        backgroundColor: COLORS.white,
+        borderRadius: SIZES.font,
+        marginBottom: SIZES.extraLarge,
+        margin: SIZES.base,
+        ...SHADOWS.dark,
+      }}
+    >
+      <View
+        style={{
+          width: "100%",
+          height: 250,
+        }}
+      >
+        <Image
+          source={data.image}
+          resizeMode="cover"
+          style={{
+            width: "100%",
+            height: "100%",
+            borderTopLeftRadius: SIZES.font,
+            borderTopRightRadius: SIZES.font,
+          }}
+        />
+
         <CircleButton imgUrl={assets.heart} right={10} top={10} />
       </View>
+
       <SubInfo />
+
       <View style={{ width: "100%", padding: SIZES.font }}>
         <NFTTitle
           title={data.name}
@@ -51,24 +70,3 @@ const NFTCard = ({ data }) => {
 };
 
 export default NFTCard;
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: COLORS.white,
-    borderRadius: SIZES.font,
-    marginBottom: SIZES.extraLarge,
-    margin: SIZES.base,
-    ...SHADOWS.dark,
-  },
-  card: {
-    width: "100%",
-    height: 250,
-  },
-  image: {
-    resizeMode: "cover",
-    width: "100%",
-    height: "100%",
-    borderTopLeftRadius: SIZES.font,
-    borderTopRightRadius: SIZES.font,
-  },
-});

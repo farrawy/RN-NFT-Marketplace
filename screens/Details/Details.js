@@ -1,30 +1,77 @@
 import React from "react";
-import { Text, View, Image, FlatList, StatusBar } from "react-native";
+import {
+  FlatList,
+  Text,
+  View,
+  SafeAreaView,
+  StatusBar,
+  Image,
+} from "react-native";
 
-import { COLORS, SIZES, SHADOWS, FONTS, assets } from "../../constants";
+import { COLORS, FONTS, SIZES, assets, SHADOWS } from "../../constants";
 import {
   CircleButton,
   RectButton,
   SubInfo,
   DetailsDesc,
   DetailsBid,
-  FocusedStatusBar,
 } from "../../components";
 
-// import styles
 import styles from "./DetailsStyles";
-import { focusProps } from "react-native-web/dist/cjs/modules/forwardedProps";
+
+const DetailsHeader = ({ data, navigation }) => (
+  <View style={{ width: "100%", height: 373 }}>
+    <Image
+      source={data.image}
+      style={{ width: "100%", height: "100%", resizeMode: "cover" }}
+    />
+  </View>
+);
 
 const Details = ({ route, navigation }) => {
-  const data = route.params;
-  console.log(data);
+  const { data } = route.params;
+
   return (
-    <View style={styles.container}>
-      <StatusBar animated={true} barStyle={"dark-content"} translucent={true} />
-      <View>
+    <SafeAreaView style={styles.container}>
+      <StatusBar
+        barStyle={"dark-content"}
+        backgroundColor={COLORS.primary}
+        animated={true}
+      />
+      <View style={styles.button}>
         <RectButton minWidth={170} fontSize={SIZES.large} {...SHADOWS.dark} />
       </View>
-    </View>
+      <FlatList
+        data={data.bids}
+        renderItem={({ item }) => <DetailsBid bid={item} />}
+        keyExtractor={(item) => item.id}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingBottom: SIZES.extraLarge * 3,
+        }}
+        ListHeaderComponent={() => (
+          <React.Fragment>
+            <DetailsHeader data={data} navigation={navigation} />
+            <SubInfo />
+            <View style={{ padding: SIZES.font }}>
+              <DetailsDesc data={data} />
+
+              {data.bids.length > 0 && (
+                <Text
+                  style={{
+                    fontSize: SIZES.font,
+                    fontFamily: FONTS.semiBold,
+                    color: COLORS.primary,
+                  }}
+                >
+                  Current Bid
+                </Text>
+              )}
+            </View>
+          </React.Fragment>
+        )}
+      />
+    </SafeAreaView>
   );
 };
 
