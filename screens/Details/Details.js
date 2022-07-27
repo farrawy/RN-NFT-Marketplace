@@ -1,5 +1,8 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import React from "react";
+
+// import styles
+import styles from "./DetailsStyles";
 
 const Details = () => {
   return (
@@ -10,5 +13,3 @@ const Details = () => {
 };
 
 export default Details;
-
-const styles = StyleSheet.create({});

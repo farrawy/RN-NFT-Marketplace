@@ -1,5 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { Text, View, FlatList, SafeArea } from "react-native";
+
+import { COLORS, NFTData } from "../constants";
+
+// import styles
+import styles from "./HomeStyles";
 
 const Home = () => {
   return (
@@ -10,5 +15,3 @@ const Home = () => {
 };
 
 export default Home;
-
-const styles = StyleSheet.create({});
