@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useEffect, Component } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 
 import Home from "./screens/Home/Home";
 import Details from "./screens/Details/Details";
+import { View } from "react-native-web";
+import { ActivityIndicator, ImageBackground } from "react-native";
 
 const theme = {
   ...DefaultTheme,
@@ -25,7 +27,9 @@ const App = () => {
     InterLight: require("./assets/fonts/Inter-Light.ttf"),
   });
 
-  if (!loaded) return null;
+  if (!loaded) {
+    return null;
+  }
 
   return (
     <NavigationContainer theme={theme}>

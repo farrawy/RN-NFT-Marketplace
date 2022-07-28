@@ -30,7 +30,7 @@ const Home = () => {
         backgroundColor={COLORS.primary}
         animated={true}
       />
-      <View style={{ flex: 1, paddingTop: 25 }}>
+      <View style={{ flex: 1 }}>
         <View style={{ zIndex: 0 }}>
           <FlatList
             data={nftData}

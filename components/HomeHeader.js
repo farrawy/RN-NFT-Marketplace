@@ -1,15 +1,29 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TextInput,
+  StatusBar,
+  Platform,
+} from "react-native";
 
 import { COLORS, FONTS, SIZES, assets } from "../constants";
 const HomeHeader = ({ onSearch }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.innerHeader}>
-        <Image source={assets.logo} style={styles.logo} />
+      <View
+        style={
+          Platform.OS === "ios"
+            ? styles.innerHeaderIOS
+            : styles.innerHeaderANDROID
+        }
+      >
+        <Image source={assets.logo1} style={styles.logo} />
 
         <View style={styles.profile}>
-          <Image source={assets.person01} style={styles.avatar} />
+          <Image source={assets.person05} style={styles.avatar} />
           <Image source={assets.badge} style={styles.badge} />
         </View>
       </View>
@@ -40,7 +54,13 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
     padding: SIZES.font,
   },
-  innerHeader: {
+  innerHeaderIOS: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: StatusBar.currentHeight + 40,
+  },
+  innerHeaderANDROID: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -57,6 +77,7 @@ const styles = StyleSheet.create({
   avatar: {
     width: "100%",
     height: "100%",
+    borderRadius: 100,
   },
   badge: {
     position: "absolute",

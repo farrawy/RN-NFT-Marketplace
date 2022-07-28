@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   StatusBar,
   Image,
+  Platform,
 } from "react-native";
 
 import { COLORS, FONTS, SIZES, assets, SHADOWS } from "../../constants";
@@ -25,6 +26,19 @@ const DetailsHeader = ({ data, navigation }) => (
       source={data.image}
       style={{ width: "100%", height: "100%", resizeMode: "cover" }}
     />
+
+    <CircleButton
+      imgUrl={assets.left}
+      handlePress={() => navigation.goBack()}
+      left={15}
+      top={Platform.OS === "ios" ? StatusBar.currentHeight + 50 : 10}
+    />
+
+    <CircleButton
+      imgUrl={assets.heart}
+      right={15}
+      top={Platform.OS === "ios" ? StatusBar.currentHeight + 50 : 10}
+    />
   </View>
 );
 
@@ -32,7 +46,7 @@ const Details = ({ route, navigation }) => {
   const { data } = route.params;
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar
         barStyle={"dark-content"}
         backgroundColor={COLORS.primary}
@@ -71,7 +85,7 @@ const Details = ({ route, navigation }) => {
           </React.Fragment>
         )}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
