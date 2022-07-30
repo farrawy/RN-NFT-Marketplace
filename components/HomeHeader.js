@@ -37,7 +37,7 @@ const HomeHeader = ({ onSearch }) => {
           <Image source={assets.search} style={styles.searchImg} />
           <TextInput
             placeholder="Search NFTs"
-            style={{ flex: 1 }}
+            style={{ flex: 1, color: COLORS.white, fontFamily: FONTS.semiBold }}
             onChangeText={onSearch}
             placeholderTextColor={COLORS.white}
           />
